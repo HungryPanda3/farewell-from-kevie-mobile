@@ -562,16 +562,16 @@ let sdQuoteDisplayTimer = 0;
 
 const sdQuoteDuration = 150;
 
-function updateBackground() {
+function updateBackground(deltaTime) {
 
-  backgroundX -= backgroundSpeed;
+  backgroundX -= backgroundSpeed * deltaTime;
 
 }
 
-function updateRailBackgrounds() {
+function updateRailBackgrounds(deltaTime) {
 
-  midRailX -= midRailSpeed;
-  farRailX -= farRailSpeed;
+  midRailX -= midRailSpeed * deltaTime;
+  farRailX -= farRailSpeed * deltaTime;
 
   if (midRailX <= -canvas.width) {
     midRailX = 0;
@@ -824,10 +824,10 @@ function drawRailBackgrounds() {
   );
 }
 
-function updateTurf() {
+function updateTurf(deltaTime) {
 
-  turfNearX -= turfNearSpeed;
-  turfFarX -= turfFarSpeed;
+  turfNearX -= turfNearSpeed * deltaTime;
+  turfFarX -= turfFarSpeed *deltaTime;
 
 }
 
@@ -868,15 +868,15 @@ function drawTurfLayer(image, x, y, width, height) {
 
 }
 
-function updateBanners() {
+function updateBanners(deltaTime) {
 
-  bannerX -= bannerSpeed;
+  bannerX -= bannerSpeed * deltaTime;
 
 }
 
-function updateClouds() {
+function updateClouds(deltaTime) {
 
-  cloudsX -= cloudsSpeed;
+  cloudsX -= cloudsSpeed * deltaTime;
 
   const totalCloudWidth = cloudsWidth * 2;
 
@@ -968,7 +968,7 @@ function spawnObstacle() {
 
 }
 
-function updateObstacles() {
+function updateObstacles(deltaTime) {
 
   obstacleTimer++;
 
@@ -986,7 +986,7 @@ function updateObstacles() {
 
     const obstacle = obstacles[i];
 
-    obstacle.x -= obstacle.speed;
+    obstacle.x -= obstacle.speed * deltaTime;
 
     // Remove obstacles once they're off screen
     if (obstacle.x + obstacle.width < 0) {
@@ -1011,9 +1011,9 @@ function drawObstacles() {
 
 }
 
-function updateScenery() {
+function updateScenery(deltaTime) {
 
-  sceneryX -= scenerySpeed;
+  sceneryX -= scenerySpeed * deltaTime;
 
   const sceneryLoopWidth = 4200;
 
@@ -1397,7 +1397,15 @@ function updateScore() {
 
 }
 
-function gameLoop() {
+let lastFrameTime = 0;
+
+function gameLoop(currentTime) {
+
+  if (!lastFrameTime) {
+    lastFrameTime = currentTime;
+  }
+
+  lastFrameTime = currentTime; 
 
   ctx.clearRect(
     0,
@@ -1466,14 +1474,14 @@ function gameLoop() {
       updateEnergy();
       updateScore();
 
-      updateBackground();
-      updateClouds();
-      updateScenery();
-      updateTurf();
-      updateRailBackgrounds();
-      updateBanners();
+      updateBackground(deltaTime);
+      updateClouds(deltaTime);
+      updateScenery(deltaTime);
+      updateTurf(deltaTime);
+      updateRailBackgrounds(deltaTime);
+      updateBanners(deltaTime);
 
-      updateObstacles();
+      updateObstacles(deltaTime);
       updateSDQuotes();
       checkCollisions();
 

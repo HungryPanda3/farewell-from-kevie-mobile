@@ -1405,6 +1405,12 @@ function gameLoop(currentTime) {
     lastFrameTime = currentTime;
   }
 
+  let deltaTime =
+    (currentTime - lastFrameTime) / 16.67;
+  
+  // Prevent giant jumps if the browser briefly freezes
+  deltaTime = Math.min(deltaTime, 3);
+  
   lastFrameTime = currentTime; 
 
   ctx.clearRect(

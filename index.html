@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  >
+
+  <title>Farewell from Kevie: SD's Horsin' Around - Mobile</title>
+
+  <link rel="stylesheet" href="mobile-style.css">
+</head>
+
+<body>
+
+  <div class="mobile-game-wrapper">
+
+    <canvas
+      id="gameCanvas"
+      width="1280"
+      height="720"
+    ></canvas>
+
+
+    <!-- PAUSE BUTTON -->
+    <button
+      id="pauseButton"
+      class="mobile-ui-button pause-button"
+      aria-label="Pause game"
+    >
+      II
+    </button>
+
+
+    <!-- QUINNY BUTTON -->
+    <button
+      id="quinnyButton"
+      class="mobile-ui-button quinny-button"
+    >
+      GIVE EM STRENGTH!
+    </button>
+
+
+    <!-- ROTATE PHONE MESSAGE -->
+    <div id="rotateMessage">
+      <div class="rotate-box">
+        <div class="rotate-icon">↻</div>
+
+        <div>
+          ROTATE YOUR PHONE
+        </div>
+
+        <small>
+          SD prefers racing sideways.
+        </small>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- Keep these invisible so the existing JS
+       can still update them without errors -->
+  <div class="legacy-elements">
+
+    <span id="score">0</span>
+
+    <div id="energyFill"></div>
+
+    <span id="energyText">100%</span>
+
+    <div
+      id="quinnyPopup"
+      class="hidden"
+    ></div>
+
+  </div>
+
+
+  <script src="farewell-from-kevie-mobile.js"></script>
+
+</body>
+</html>

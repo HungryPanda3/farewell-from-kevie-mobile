@@ -114,7 +114,7 @@ const maxJumps = 2;
 let runFrame = 0;
 let animationTimer = 0;
 
-const animationSpeed = 20;
+const animationSpeed = 10;
 
 let bannerX = 0;
 const bannerSpeed = 3.5;
